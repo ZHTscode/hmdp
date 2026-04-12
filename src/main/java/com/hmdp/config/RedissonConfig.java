@@ -19,13 +19,11 @@ public class RedissonConfig {
     private String host;
     @Value("${spring.redis.port}")
     private String port;
-    @Value("${spring.redis.password}")
-    private String password;
     @Bean
     public RedissonClient redissonClient(){
         //配置
         Config config=new Config();
-        config.useSingleServer().setAddress("redis://"+host+":"+port).setPassword(password);
+        config.useSingleServer().setAddress("redis://"+host+":"+port);
         //创建对并且返回
         return Redisson.create(config);
     }
